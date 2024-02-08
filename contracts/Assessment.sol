@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-//import "hardhat/console.sol";
-
 contract Assessment {
     address payable public owner;
     uint256 public balance;
@@ -15,7 +13,7 @@ contract Assessment {
         balance = initBalance;
     }
 
-    function getBalance() public view returns(uint256){
+    function getBalance() public view returns(uint256) {
         return balance;
     }
 
@@ -56,5 +54,19 @@ contract Assessment {
 
         // emit the event
         emit Withdraw(_withdrawAmount);
+    }
+
+    // Loan calculator function
+    function calculateMonthlyPayment(uint256 _loanAmount, uint256 _interestRate, uint256 _repaymentTerm) public pure returns(uint256) {
+        uint256 monthlyInterestRate = (_interestRate * 1e16) / (12 * 100); // Convert annual interest rate to monthly and adjust decimal precision
+        uint256 numPayments = _repaymentTerm * 12;
+        uint256 monthlyPayment = (_loanAmount * monthlyInterestRate * ((1 + monthlyInterestRate) ** numPayments)) / (((1 + monthlyInterestRate) ** numPayments) - 1);
+        return monthlyPayment;
+    }
+
+    // Function to calculate gas fee
+    function calculateGasFee(uint256 _transactionAmount) public pure returns(uint256) {
+        uint256 gasFee = (_transactionAmount * 1) / 100; // Assuming gas fee is 1% of the transaction amount
+        return gasFee;
     }
 }
