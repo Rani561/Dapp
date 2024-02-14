@@ -1,3 +1,4 @@
+
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
@@ -66,7 +67,7 @@ contract Assessment {
 
     // Function to calculate gas fee
     function calculateGasFee(uint256 _transactionAmount) public pure returns(uint256) {
-        uint256 gasFee = (_transactionAmount * 0.005) / 100; // Assuming gas fee is 0.5% of the transaction amount
+        uint256 gasFee = (_transactionAmount * 0.5) / 100; // Assuming gas fee is 0.5% of the transaction amount
         return gasFee;
     }
 }
