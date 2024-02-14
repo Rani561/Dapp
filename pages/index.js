@@ -69,7 +69,7 @@ export default function HomePage() {
     if (atm) {
       const gasLimit = 100000; // You may adjust this value based on your contract's requirements
       const gasPrice = await ethWallet.request({ method: 'eth_gasPrice' });
-      const gasFee = ethers.utils.parseEther((transactionAmount * 0.005).toString()); // Calculate gas fee as 1% of the deposit amount
+      const gasFee = ethers.utils.parseEther((transactionAmount * 0.005).toString()); // Calculate gas fee as 0.5% of the deposit amount
       setGasFee(gasFee);
       
       let tx = await atm.deposit(transactionAmount, { gasLimit, gasPrice: gasPrice.toString() });
@@ -82,7 +82,7 @@ export default function HomePage() {
     if (atm) {
       const gasLimit = 100000; // You may adjust this value based on your contract's requirements
       const gasPrice = await ethWallet.request({ method: 'eth_gasPrice' });
-      const gasFee = ethers.utils.parseEther((transactionAmount * 0.005).toString()); // Calculate gas fee as 1% of the withdrawal amount
+      const gasFee = ethers.utils.parseEther((transactionAmount * 0.005).toString()); // Calculate gas fee as 0.5% of the withdrawal amount
       setGasFee(gasFee);
       
       let tx = await atm.withdraw(transactionAmount, { gasLimit, gasPrice: gasPrice.toString() });
